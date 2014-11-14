@@ -6,6 +6,7 @@ import java.net.*;
 public class SafeWalkServer extends Thread {
 
 	private ServerSocket serverSocket;
+	static String request = "";
 
 	public SafeWalkServer(int port) throws SocketException, IOException {
 		serverSocket = new ServerSocket(port);
@@ -14,18 +15,25 @@ public class SafeWalkServer extends Thread {
 		serverSocket.setSoTimeout(10000);
 	}
 
+	public int getLocalPort() {
+		return serverSocket.getLocalPort();
+	}
+
 	public void run() {
 		while (true) {
 			try {
 				System.out.println("Waiting for client...");
 				Socket server = serverSocket.accept();
 				System.out.println("Connected to " + server.getRemoteSocketAddress());
-				DataInputStream in =
-                  new DataInputStream(server.getInputStream());
-	            System.out.println(in.readUTF());
+				BufferedReader in =
+		          new BufferedReader(new InputStreamReader(server.getInputStream()));
 	            DataOutputStream out =
                  new DataOutputStream(server.getOutputStream());
+               	System.out.println("Hi");
                 out.writeUTF("Welcome to the SafeWalkServer");
+                System.out.println("here");
+                request = in.readLine();
+                out.writeUTF(request);
                 server.close();
 
 				
