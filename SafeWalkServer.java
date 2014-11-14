@@ -1,3 +1,5 @@
+
+
 import java.io.*;
 import java.net.*;
 
@@ -6,16 +8,10 @@ public class SafeWalkServer extends Thread {
 	private ServerSocket serverSocket;
 
 	public SafeWalkServer(int port) throws SocketException, IOException {
-		ServerSocket serverSocket = new ServerSocket(port);
+		serverSocket = new ServerSocket(port);
 		System.out.println("Server is bound to port " + port);
 		serverSocket.setReuseAddress(true);
-	}
-
-	public SafeWalkServer() throws SocketException, IOException {
-		ServerSocket serverSocket = new ServerSocket(0);
-		System.out.println("Server is bound to port " + serverSocket.getLocalPort());
-		serverSocket.setReuseAddress(true);
-
+		serverSocket.setSoTimeout(10000);
 	}
 
 	public void run() {
@@ -45,18 +41,10 @@ public class SafeWalkServer extends Thread {
 	}
 
 	public static void main(String[] args) {
-		int portNum = 0;
-		try {
-			if (args.length > 0) {
-					portNum = Integer.parseInt(args[0]);
-					Thread sws = new SafeWalkServer(portNum);
-					sws.start();
-			} else {	
-				Thread sws = new SafeWalkServer();
-				sws.start();
-			}
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
+		int portNum = Integer.parseInt(args[0]);
+		try {			
+			Thread t = new SafeWalkServer(portNum);
+			t.start();
 		} catch (Exception se) {
 			se.printStackTrace();
 		}
