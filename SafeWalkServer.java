@@ -8,6 +8,7 @@ import java.util.*;
 
 public class SafeWalkServer extends Thread {
 
+	//sets the scope of these objects to the entire class
 	private ServerSocket serverSocket;
 	private ArrayList<String> names;
 	private ArrayList<String> from;
@@ -18,15 +19,18 @@ public class SafeWalkServer extends Thread {
 	private int[] pair;
 	
 
-
+	/*public SafeWalkServer(int port) constructor takes an int arguement
+	for the port number to bind the server to.
+	*/
 	public SafeWalkServer(int port) throws SocketException, IOException {
+		//sets up the array lists for the pending entries in the server
 		ArrayList<String> names = new ArrayList<String>();
 		ArrayList<String> from = new ArrayList<String>();
 		ArrayList<String> to = new ArrayList<String>();
 		ArrayList<Integer> type = new ArrayList<Integer>();
 		ArrayList<Integer> options = new ArrayList<Integer>();
 		
-		serverSocket = new ServerSocket(port);
+		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
 		serverSocket.setReuseAddress(true);
 		serverSocket.setSoTimeout(30000);
@@ -38,7 +42,9 @@ public class SafeWalkServer extends Thread {
 
 	/* Public void analyzeRequests runs through all of the current requests
 	and matches them to people leaving the same place and are either going
-	to the same place or going to * location.
+	to the same place or going to * location. it returns an int[] that has two fields
+	that are two int that are the indexes that match. analyze Requests will return the 
+	first match and only the first match.
 	*/
 
 	public int[] analyzeRequests() {
@@ -46,6 +52,11 @@ public class SafeWalkServer extends Thread {
 		String holderTo = "";
 		int [] holder = new int[2];
 		options.clear();
+
+		/*iterate through the requests already in the server database
+		and first checks to see if another request is departing the
+		same location
+		*/
 		for (int i = 0; i < from.size(); i++) {
 			holderFrom = from.get(i);
 			holderTo = to.get(i);
@@ -56,11 +67,16 @@ public class SafeWalkServer extends Thread {
 					}
 				}
 			}
+			/* After finding matches for requests with similar 
+			departing location, analyzeRequests
+			will test the requests for requests that match arrival location
+			or * location.
+			*/
 			if (options.size() > 0) {
 				for (int m = 0; m < options.size(); m++) {
-					if (to.get(options.get(m)) == holderTo) {
-						holder[0] = i;
-						holder[1] = options.get(m);
+					if (to.get(options.get(m)) == holderTo || to.get(options.get(m)) == "*") {
+						holder[0] = i;               //sets the first field to first sampled index
+						holder[1] = options.get(m);  //sets the second field to first match found
 						return holder;
 					}
 				}
