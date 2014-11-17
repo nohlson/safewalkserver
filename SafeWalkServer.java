@@ -90,23 +90,31 @@ public class SafeWalkServer extends Thread {
 	public void run() {
 		while (true) {
 			try {
+				//set up new server with serverSocket.accept()
 				String request = "";
 				System.out.println("Waiting for client...");
 				Socket server = serverSocket.accept();
 				System.out.println("Connected to " + server.getRemoteSocketAddress());
+
+				/*takes the input and output stream of the server and creates a 
+				buffered reader and a data output stream to manage the input
+				and output of the server
+				*/
 				BufferedReader in =
 		          new BufferedReader(new InputStreamReader(server.getInputStream()));
 	            DataOutputStream out =
                  new DataOutputStream(server.getOutputStream());
+
+                //new server has been created
                 out.writeUTF("Welcome to the SafeWalkServer");
                 try {
-	            	request = in.readLine();
-	            	String[] parts = request.split(", ");
-	            	names.add(parts[0]);
-	            	from.add(parts[1]);
-	            	to.add(parts[2]);
-	            	type.add(Integer.parseInt(parts[3]));
-	            } catch (IndexOutOfBoundsException ie) {
+	            	request = in.readLine(); //takes the request
+	            	String[] parts = request.split(", "); //splits the request into parts
+	            	names.add(parts[0]); //the first entry in the request is name
+	            	from.add(parts[1]); //the second entry in the request is from
+	            	to.add(parts[2]); //the third entry in the request is destination
+	            	type.add(Integer.parseInt(parts[3])); //the fourth entry in the request is priority
+	            } catch (IndexOutOfBoundsException ie) { //assuming the request is actually a server command
 	            	if (request.charAt(0) == ':') {
 
 	            	}
