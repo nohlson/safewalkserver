@@ -15,7 +15,6 @@ public class SafeWalkServer extends Thread {
 	private ArrayList<String> to;
 	private ArrayList<Integer> type;
 	private ArrayList<Integer> options;
-	private String[] parts;
 	private int[] pair;
 	
 
@@ -24,11 +23,11 @@ public class SafeWalkServer extends Thread {
 	*/
 	public SafeWalkServer(int port) throws SocketException, IOException {
 		//sets up the array lists for the pending entries in the server
-		ArrayList<String> names = new ArrayList<String>();
-		ArrayList<String> from = new ArrayList<String>();
-		ArrayList<String> to = new ArrayList<String>();
-		ArrayList<Integer> type = new ArrayList<Integer>();
-		ArrayList<Integer> options = new ArrayList<Integer>();
+		names = new ArrayList<String>();
+		from = new ArrayList<String>();
+		to = new ArrayList<String>();
+		type = new ArrayList<Integer>();
+		options = new ArrayList<Integer>();
 		
 		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
@@ -51,6 +50,8 @@ public class SafeWalkServer extends Thread {
 		String holderFrom = "";
 		String holderTo = "";
 		int [] holder = new int[2];
+		holder[0] = 0;
+		holder[1] = 0;
 		options.clear();
 
 		/*iterate through the requests already in the server database
@@ -62,7 +63,7 @@ public class SafeWalkServer extends Thread {
 			holderTo = to.get(i);
 			for (int j = 0; j < from.size(); j++) {
 				if (j != i) {
-					if (from.get(j) == holderFrom) {
+					if (from.get(j).equals(holderFrom)) {
 						options.add(j);
 					}
 				}
@@ -72,7 +73,7 @@ public class SafeWalkServer extends Thread {
 			will test the requests for requests that match arrival location
 			or * location.
 			*/
-			if (options.size() > 0) {
+			if (options.size() >= 1) {
 				for (int m = 0; m < options.size(); m++) {
 					if (to.get(options.get(m)) == holderTo || to.get(options.get(m)) == "*") {
 						holder[0] = i;               //sets the first field to first sampled index
@@ -91,6 +92,7 @@ public class SafeWalkServer extends Thread {
 		while (true) {
 			try {
 				//set up new server with serverSocket.accept()
+				int[] match = new int[2];
 				String request = "";
 				System.out.println("Waiting for client...");
 				Socket server = serverSocket.accept();
@@ -114,6 +116,11 @@ public class SafeWalkServer extends Thread {
 	            	from.add(parts[1]); //the second entry in the request is from
 	            	to.add(parts[2]); //the third entry in the request is destination
 	            	type.add(Integer.parseInt(parts[3])); //the fourth entry in the request is priority
+	            	match = analyzeRequests();
+	            	if (match[0] != 0 || match[1] != 0) {
+	            		System.out.println("Match found");
+	            	}
+
 	            } catch (IndexOutOfBoundsException ie) { //assuming the request is actually a server command
 	            	if (request.charAt(0) == ':') {
 
