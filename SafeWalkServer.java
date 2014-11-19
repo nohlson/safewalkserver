@@ -32,6 +32,7 @@ public class SafeWalkServer extends Thread {
 		type = new ArrayList<Integer>();
 		options = new ArrayList<Integer>();
 		userID = new ArrayList<DataOutputStream>();
+		sockets = new ArrayList<Socket>();
 		
 		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
