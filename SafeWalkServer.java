@@ -57,13 +57,13 @@ public class SafeWalkServer extends Thread {
 		int [] holder = new int[2];
 		holder[0] = 0;
 		holder[1] = 0;
-		options.clear();
 
 		/*iterate through the requests already in the server database
 		and first checks to see if another request is departing the
 		same location
 		*/
 		for (int i = 0; i < from.size(); i++) {
+			options.clear();
 			holderFrom = from.get(i);
 			holderTo = to.get(i);
 			for (int j = 0; j < from.size(); j++) {
@@ -80,9 +80,9 @@ public class SafeWalkServer extends Thread {
 			*/
 			if (options.size() >= 1) {
 				for (int m = 0; m < options.size(); m++) {
-					if (to.get(options.get(m)) == holderTo || to.get(options.get(m)) == "*") {
-						holder[0] = i;               //sets the first field to first sampled index
-						holder[1] = m;              //sets the second field to first match found
+					if (to.get(options.get(m)).equals(holderTo) || to.get(options.get(m)).equals("*")) {
+						holder[0] = options.get(m);               //sets the first field to first sampled index
+						holder[1] = i;              //sets the second field to first match found
 						
 						return holder;
 					}
@@ -134,7 +134,24 @@ public class SafeWalkServer extends Thread {
 	            		userID.get(match[0]).writeUTF("RESPONSE: " + names.get(match[1]) + from.get(match[1]) + to.get(match[1]));
 	            		userID.get(match[1]).writeUTF("RESPONSE: " + names.get(match[0]) + from.get(match[0]) + to.get(match[0]));
 
-	            		
+	            		sockets.get(match[0]).close();
+	            		sockets.get(match[1]).close();
+
+	            		names.remove(match[0]);
+	            		from.remove(match[0]);
+	            		to.remove(match[0]);
+	            		type.remove(match[0]);
+	            		userID.remove(match[0]);
+	            		sockets.remove(match[0]);
+
+	            		names.remove(match[1]);
+	            		from.remove(match[1]);
+	            		to.remove(match[1]);
+	            		type.remove(match[1]);
+	            		userID.remove(match[1]);
+	            		sockets.remove(match[1]);
+
+
 
 
 	            	}
