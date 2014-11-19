@@ -15,7 +15,10 @@ public class SafeWalkServer extends Thread {
 	private ArrayList<String> to;
 	private ArrayList<Integer> type;
 	private ArrayList<Integer> options;
+	private ArrayList
 	private int[] pair;
+	private ArrayList<Socket> socket;
+	private Socket serv;
 	
 
 	/*public SafeWalkServer(int port) constructor takes an int arguement
@@ -28,6 +31,7 @@ public class SafeWalkServer extends Thread {
 		to = new ArrayList<String>();
 		type = new ArrayList<Integer>();
 		options = new ArrayList<Integer>();
+		socket = new ArrayList<Socket>();
 		
 		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
@@ -95,17 +99,19 @@ public class SafeWalkServer extends Thread {
 				int[] match = new int[2];
 				String request = "";
 				System.out.println("Waiting for client...");
-				Socket server = serverSocket.accept();
-				System.out.println("Connected to " + server.getRemoteSocketAddress());
+				serv = serverSocket.accept();
+				socket.add(serv);
 
-				/*takes the input and output stream of the server and creates a 
+				System.out.println("Connected to " + serv.getRemoteSocketAddress());
+
+				/*takes the input and output stream of the serv and creates a 
 				buffered reader and a data output stream to manage the input
-				and output of the server
+				and output of the serv
 				*/
 				BufferedReader in =
-		          new BufferedReader(new InputStreamReader(server.getInputStream()));
+		          new BufferedReader(new InputStreamReader(serv.getInputStream()));
 	            DataOutputStream out =
-                 new DataOutputStream(server.getOutputStream());
+                 new DataOutputStream(serv.getOutputStream());
 
                 //new server has been created
                 out.writeUTF("Welcome to the SafeWalkServer");
@@ -135,7 +141,7 @@ public class SafeWalkServer extends Thread {
 
 
                 out.writeUTF("\n");
-                server.close();
+                serv.close();
 
 				
 
