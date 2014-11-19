@@ -18,6 +18,7 @@ public class SafeWalkServer extends Thread {
 	private ArrayList<DataOutputStream> userID;
 	private int[] pair;
 	private Socket serv;
+	private ArrayList<Socket> sockets;
 	
 
 	/*public SafeWalkServer(int port) constructor takes an int arguement
@@ -99,6 +100,7 @@ public class SafeWalkServer extends Thread {
 				String request = "";
 				System.out.println("Waiting for client...");
 				serv = serverSocket.accept();
+				sockets.add(serv);
 				
 
 				System.out.println("Connected to " + serv.getRemoteSocketAddress());
@@ -125,7 +127,8 @@ public class SafeWalkServer extends Thread {
 	            	match = analyzeRequests();
 	            	if (match[0] != 0 || match[1] != 0) {
 	            		System.out.println("Match found");
-	            		// userID.get(match[0]).writeUTF("Names")
+	            		userID.get(match[0]).writeUTF("RESPONSE: " + names.get(match[1]) + from.get(match[1]) + to.get(match[1]));
+	            		userID.get(match[1]).writeUTF("RESPONSE: " + names.get(match[0]) + from.get(match[0]) + to.get(match[0]));
 
 
 	            	}
@@ -144,7 +147,7 @@ public class SafeWalkServer extends Thread {
 
 
                 out.writeUTF("\n");
-                serv.close();
+                
 
 				
 
