@@ -15,9 +15,8 @@ public class SafeWalkServer extends Thread {
 	private ArrayList<String> to;
 	private ArrayList<Integer> type;
 	private ArrayList<Integer> options;
-	private ArrayList
+	private ArrayList<DataOutputStream> userID;
 	private int[] pair;
-	private ArrayList<Socket> socket;
 	private Socket serv;
 	
 
@@ -31,7 +30,7 @@ public class SafeWalkServer extends Thread {
 		to = new ArrayList<String>();
 		type = new ArrayList<Integer>();
 		options = new ArrayList<Integer>();
-		socket = new ArrayList<Socket>();
+		userID = new ArrayList<DataOutputStream>();
 		
 		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
@@ -100,7 +99,7 @@ public class SafeWalkServer extends Thread {
 				String request = "";
 				System.out.println("Waiting for client...");
 				serv = serverSocket.accept();
-				socket.add(serv);
+				
 
 				System.out.println("Connected to " + serv.getRemoteSocketAddress());
 
@@ -122,9 +121,13 @@ public class SafeWalkServer extends Thread {
 	            	from.add(parts[1]); //the second entry in the request is from
 	            	to.add(parts[2]); //the third entry in the request is destination
 	            	type.add(Integer.parseInt(parts[3])); //the fourth entry in the request is priority
+	            	userID.add(out);
 	            	match = analyzeRequests();
 	            	if (match[0] != 0 || match[1] != 0) {
 	            		System.out.println("Match found");
+	            		// userID.get(match[0]).writeUTF("Names")
+
+
 	            	}
 
 	            } catch (IndexOutOfBoundsException ie) { //assuming the request is actually a server command
