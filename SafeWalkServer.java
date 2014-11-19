@@ -123,9 +123,14 @@ public class SafeWalkServer extends Thread {
 
 	            } catch (IndexOutOfBoundsException ie) { //assuming the request is actually a server command
 	            	if (request.charAt(0) == ':') {
-
-	            	}
-	            }
+			    if ( request.equals(":LIST_PENDING_REQUESTS")) {
+				for(int i = 0; i < names.size(); i ++) {
+				    out.writeUTF(names.get(i) + ", " + from.get(i) + ", " + to.get(i) + ", " + Integer.toString(type.get(i)));
+				}
+			    }
+			}
+			
+		}
 
 
 
