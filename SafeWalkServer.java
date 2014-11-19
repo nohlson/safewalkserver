@@ -167,23 +167,23 @@ public class SafeWalkServer extends Thread {
 			
 
 			else if (request.equals(":SHUTDOWN")) {
-			    for( int i = 0; i < socket.size(); i++) {
+			    for( int i = 0; i < sockets.size(); i++) {
 				userID.get(i).writeUTF("ERROR: connection shutdown");
 				userID.get(i).flush();
-				socket.get(i).close();
+				sockets.get(i).close();
 			    }
 			    break;
 			}
 			else if (request.equals(":RESET")) {
-			    for ( int i = 0; i < socket.size() - 1; i++) {
+			    for ( int i = 0; i < sockets.size() - 1; i++) {
 				userID.get(i).writeUTF("ERROR: connection reset");
 				userID.get(i).flush();
-				socket.get(i).close();
+				sockets.get(i).close();
 			    }
-			    userID.get(socket.size()).writeUTF("RESPONSE: success");
-			    userID.get(socket.size()).flush();
-			    socket.get(socket.size()).close();
-			    socket.clear();
+			    userID.get(sockets.size()).writeUTF("RESPONSE: success");
+			    userID.get(sockets.size()).flush();
+			    sockets.get(sockets.size()).close();
+			    sockets.clear();
 			    names.clear();
 			    from.clear();
 			    to.clear();
