@@ -131,12 +131,10 @@ public class SafeWalkServer extends Thread {
 	            		System.out.println("Match found");
 	            		System.out.println(match[0]);
 	            		System.out.println(match[1]);
-	            		userID.get(match[0]).writeUTF("RESPONSE: " + names.get(match[1]) + from.get(match[1]) + to.get(match[1]));
-	            		userID.get(match[1]).writeUTF("RESPONSE: " + names.get(match[0]) + from.get(match[0]) + to.get(match[0]));
+	            		userID.get(match[0]).writeUTF("RESPONSE: " + names.get(match[1]) + ", " + from.get(match[1]) + ", " +  to.get(match[1]) + "\n");
+	            		userID.get(match[1]).writeUTF("RESPONSE: " + names.get(match[0]) + ", " +  from.get(match[0]) + ", " +  to.get(match[0]) + "\n");
 
-	            		sockets.get(match[0]).close();
-	            		sockets.get(match[1]).close();
-
+	        
 	            		names.remove(match[0]);
 	            		from.remove(match[0]);
 	            		to.remove(match[0]);
