@@ -82,7 +82,8 @@ public class SafeWalkServer extends Thread {
 				for (int m = 0; m < options.size(); m++) {
 					if (to.get(options.get(m)) == holderTo || to.get(options.get(m)) == "*") {
 						holder[0] = i;               //sets the first field to first sampled index
-						holder[1] = options.get(m);  //sets the second field to first match found
+						holder[1] = m;              //sets the second field to first match found
+						
 						return holder;
 					}
 				}
@@ -128,8 +129,12 @@ public class SafeWalkServer extends Thread {
 	            	match = analyzeRequests();
 	            	if (match[0] != 0 || match[1] != 0) {
 	            		System.out.println("Match found");
+	            		System.out.println(match[0]);
+	            		System.out.println(match[1]);
 	            		userID.get(match[0]).writeUTF("RESPONSE: " + names.get(match[1]) + from.get(match[1]) + to.get(match[1]));
 	            		userID.get(match[1]).writeUTF("RESPONSE: " + names.get(match[0]) + from.get(match[0]) + to.get(match[0]));
+
+	            		
 
 
 	            	}
