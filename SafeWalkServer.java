@@ -1,4 +1,8 @@
-
+ /**
+   * Project 5
+   * @author Nathan Ohlson, nohlson, labsec
+   * @author Jeremy Lehman, jlehman, labsec (can be omitted if working alone)
+   */
 
 import java.io.*;
 import java.net.*;
@@ -33,6 +37,25 @@ public class SafeWalkServer extends Thread {
 		options = new ArrayList<Integer>();
 		userID = new ArrayList<DataOutputStream>();
 		sockets = new ArrayList<Socket>();
+		
+		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
+		System.out.println("Server is bound to port " + port);
+		serverSocket.setReuseAddress(true);
+		serverSocket.setSoTimeout(30000);
+	}
+
+	public SafeWalkServer() throws SocketException, IOException {
+		//sets up the array lists for the pending entries in the server
+		names = new ArrayList<String>();
+		from = new ArrayList<String>();
+		to = new ArrayList<String>();
+		type = new ArrayList<Integer>();
+		options = new ArrayList<Integer>();
+		userID = new ArrayList<DataOutputStream>();
+		sockets = new ArrayList<Socket>();
+
+		int range = (65535 - 1025) + 1;     
+		int port = (int)(Math.random() * range) + 1025;
 		
 		serverSocket = new ServerSocket(port); //creates a new ServerSocket object at port port
 		System.out.println("Server is bound to port " + port);
@@ -194,6 +217,8 @@ public class SafeWalkServer extends Thread {
 						    from.clear();
 						    to.clear();
 						    userID.clear();
+						} else {
+							userID.get(sockets.size()).writeUTF("ERROR: invalid request");
 						}
 					}      
 				}
@@ -210,9 +235,15 @@ public class SafeWalkServer extends Thread {
 	}
 
 	public static void main(String[] args) {
-		int portNum = Integer.parseInt(args[0]);
-		try {			
-			Thread t = new SafeWalkServer(portNum);
+		int portNum;
+		Thread t;
+		try {
+		if (args.length >= 1) {
+			portNum = Integer.parseInt(args[0]);
+			t = new SafeWalkServer(portNum);
+		} else {
+			t = new SafeWalkServer();
+		}
 			t.start();
 		} catch (Exception se) {
 			se.printStackTrace();
