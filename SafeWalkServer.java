@@ -121,6 +121,7 @@ public class SafeWalkServer extends Thread {
                 try {
 	            	request = in.readLine(); //takes the request
 	            	String[] parts = request.split(", "); //splits the request into parts
+	            	String nothing = parts[2];
 	            	names.add(parts[0]); //the first entry in the request is name
 	            	from.add(parts[1]); //the second entry in the request is from
 	            	to.add(parts[2]); //the third entry in the request is destination
