@@ -157,47 +157,44 @@ public class SafeWalkServer extends Thread {
 
 	            } catch (IndexOutOfBoundsException ie) { //assuming the request is actually a server command
 	            	if (request.charAt(0) == ':') {
-			    if ( request.equals(":LIST_PENDING_REQUESTS")) {
-				if (names.get(0) == null) {
-				    out.writeUTF("");
-				    out.flush();
-				for(int i = 0; i < names.size(); i ++) {
-				    out.writeUTF(names.get(i) + ", " + from.get(i) + ", " + to.get(i) + ", " + Integer.toString(type.get(i))+"\n");
-				    out.flush();
+					    if ( request.equals(":LIST_PENDING_REQUESTS")) {
+							if (names.get(0) == null) {
+							    out.writeUTF("");
+							    out.flush();
+								for(int i = 0; i < names.size(); i ++) {
+								    out.writeUTF(names.get(i) + ", " + from.get(i) + ", " + to.get(i) + ", " + Integer.toString(type.get(i))+"\n");
+								    out.flush();
+								}
+						    }
+						}
+						
+
+						else if (request.equals(":SHUTDOWN")) {
+						    for( int i = 0; i < sockets.size(); i++) {
+								userID.get(i).writeUTF("ERROR: connection shutdown");
+								userID.get(i).flush();
+								sockets.get(i).close();
+						    }
+						    break;
+						}
+						else if (request.equals(":RESET")) {
+						    for ( int i = 0; i < sockets.size() - 1; i++) {
+						    	System.out.println("HEre");
+								userID.get(i).writeUTF("ERROR: connection reset");
+								userID.get(i).flush();
+								sockets.get(i).close();
+						    }
+						    userID.get(sockets.size()).writeUTF("RESPONSE: success");
+						    userID.get(sockets.size()).flush();
+						    sockets.get(sockets.size()).close();
+						    sockets.clear();
+						    names.clear();
+						    from.clear();
+						    to.clear();
+						    userID.clear();
+						}
+					}      
 				}
-			    }
-			}
-			
-
-			else if (request.equals(":SHUTDOWN")) {
-			    for( int i = 0; i < sockets.size(); i++) {
-				userID.get(i).writeUTF("ERROR: connection shutdown");
-				userID.get(i).flush();
-				sockets.get(i).close();
-			    }
-			    break;
-			}
-			else if (request.equals(":RESET")) {
-			    for ( int i = 0; i < sockets.size() - 1; i++) {
-				userID.get(i).writeUTF("ERROR: connection reset");
-				userID.get(i).flush();
-				sockets.get(i).close();
-			    }
-			    userID.get(sockets.size()).writeUTF("RESPONSE: success");
-			    userID.get(sockets.size()).flush();
-			    sockets.get(sockets.size()).close();
-			    sockets.clear();
-			    names.clear();
-			    from.clear();
-			    to.clear();
-			    userID.clear();
-			}
-		}
-
-
-                out.writeUTF("\n");
-                
-
 				
 
 			} catch (SocketTimeoutException ste) {
