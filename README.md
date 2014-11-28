@@ -1,3 +1,3 @@
 SafeWalkServer
 
-by Nate Ohlson and Jeremy
+by Nate Ohlson and Jeremy Lehman
