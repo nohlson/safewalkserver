@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="21" version="2.0">
 <workbenchAdvisor/>
 <window height="743" maximized="true" width="1018" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -16,7 +16,7 @@
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="68" y="30"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -24,6 +24,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.PropertiesFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -40,11 +41,16 @@
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientFragment.java" partName="ClientFragment.java" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java" title="ClientFragment.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientFragment.java" partName="ClientFragment.java" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java" title="ClientFragment.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1608" selectionTopPixel="889"/>
 </editor>
@@ -58,6 +64,23 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java" title="MainActivity.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="SafeWalkClient Manifest" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/AndroidManifest.xml" title="SafeWalkClient Manifest" tooltip="SafeWalkClient/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/AndroidManifest.xml"/>
+</editor>
+<editor id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="AndroidManifest.xml" partName="AndroidManifest.xml" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/AndroidManifest.xml" title="AndroidManifest.xml" tooltip="SafeWalkClient/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/AndroidManifest.xml"/>
+</editor>
+<editor activePart="true" focus="true" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="SafeWalkClient Manifest" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/bin/AndroidManifest.xml" title="SafeWalkClient Manifest" tooltip="SafeWalkClient/bin/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/bin/AndroidManifest.xml"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StartOverCallbackListener.java" partName="StartOverCallbackListener.java" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java" title="StartOverCallbackListener.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SubmitCallbackListener.java" partName="SubmitCallbackListener.java" path="/home/jeremy/Documents/CS/ProjectSafeWalk/safewalkserver/SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java" title="SubmitCallbackListener.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
@@ -132,7 +155,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="com.android.ide.eclipse.editors.manifest.ManifestEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -326,7 +349,6 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/ServerFragment.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/gen/edu/purdue/jwlehman/R.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/MatchFragment.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/SafeWalkClient/bin/AndroidManifest.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" path="/SafeWalkClient/project.properties"/>
@@ -335,50 +357,18 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/SafeWalkClient/AndroidManifest.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/SafeWalkClient/bin/classes.dex"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/SafeWalkClient/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/SafeWalkClient/bin/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/SafeWalkClient/bin/resources.ap_"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/SafeWalkClient/src/edu/purdue/jwlehman/MatchFragment.java"/>
 </editors>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
 <item historyLabel="R.java" index="2">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
-<item historyLabel="ServerFragment.java" index="1">
-<position info="not_deleted" x="58" y="0"/>
-</item>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
-<item historyLabel="ServerFragment.java" index="1">
-<position info="not_deleted" x="58" y="0"/>
-</item>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
-<item historyLabel="ServerFragment.java" index="1">
-<position info="not_deleted" x="1154" y="0"/>
-</item>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
-<item historyLabel="R.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="MatchFragment.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="ServerFragment.java" index="1">
-<position info="not_deleted" x="1154" y="0"/>
-</item>
-<item historyLabel="ClientFragment.java" index="0">
-<position info="not_deleted" x="1909" y="0"/>
-</item>
-<item historyLabel="R.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="BuildConfig.java" index="4">
+<item historyLabel="BuildConfig.java" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="R.java" index="2">
@@ -387,7 +377,7 @@
 <item historyLabel="R.java" index="2">
 <position info="not_deleted" x="2570" y="0"/>
 </item>
-<item historyLabel="SafeWalkClient Manifest" index="5"/>
+<item historyLabel="SafeWalkClient Manifest" index="4"/>
 <item historyLabel="R.java" index="2">
 <position info="not_deleted" x="2570" y="0"/>
 </item>
@@ -397,23 +387,23 @@
 <item historyLabel="ServerFragment.java" index="1">
 <position info="not_deleted" x="1154" y="0"/>
 </item>
-<item historyLabel="SafeWalkClient Manifest" index="5"/>
+<item historyLabel="SafeWalkClient Manifest" index="4"/>
 <item historyLabel="ServerFragment.java" index="1">
 <position info="not_deleted" x="1154" y="0"/>
 </item>
-<item historyLabel="project.properties" index="6">
+<item historyLabel="project.properties" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="ServerFragment.java" index="1">
 <position info="not_deleted" x="1154" y="0"/>
 </item>
-<item historyLabel="proguard-project.txt" index="7">
+<item historyLabel="proguard-project.txt" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="ServerFragment.java" index="1">
 <position info="not_deleted" x="1154" y="0"/>
 </item>
-<item historyLabel="ic_launcher-web.png" index="8">
+<item historyLabel="ic_launcher-web.png" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="ServerFragment.java" index="1">
@@ -437,7 +427,7 @@
 <item historyLabel="R.java" index="2">
 <position info="not_deleted" x="2303" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="9">
+<item historyLabel="MainActivity.java" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="ClientFragment.java" index="0">
@@ -452,7 +442,7 @@
 <item historyLabel="R.java" index="2">
 <position info="not_deleted" x="231" y="1"/>
 </item>
-<item historyLabel="SafeWalkClient Manifest" index="10">
+<item historyLabel="SafeWalkClient Manifest" index="9">
 <position info="not_deleted" x="39" y="0"/>
 </item>
 <item historyLabel="ClientFragment.java" index="0">
@@ -464,7 +454,7 @@
 <item historyLabel="ClientFragment.java" index="0">
 <position info="not_deleted" x="1608" y="0"/>
 </item>
-<item historyLabel="classes.dex" index="11">
+<item historyLabel="classes.dex" index="10">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="ClientFragment.java" index="0">
@@ -476,22 +466,45 @@
 <item historyLabel="ClientFragment.java" index="0">
 <position info="not_deleted" x="1608" y="0"/>
 </item>
-<item historyLabel="SafeWalkClient Manifest" index="10"/>
-<item active="true" historyLabel="ClientFragment.java" index="0">
+<item historyLabel="SafeWalkClient Manifest" index="9"/>
+<item historyLabel="ClientFragment.java" index="0">
 <position info="not_deleted" x="1608" y="0"/>
 </item>
+<item historyLabel="SafeWalkClient Manifest" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SafeWalkClient Manifest" index="11"/>
+<item historyLabel="SafeWalkClient Manifest" index="12"/>
+<item historyLabel="resources.ap_" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SafeWalkClient Manifest" index="12"/>
+<item historyLabel="BuildConfig.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SafeWalkClient Manifest" index="12"/>
+<item historyLabel="StartOverCallbackListener.java" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SubmitCallbackListener.java" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="StartOverCallbackListener.java" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MatchFragment.java" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="ClientFragment.java" index="0">
+<position info="not_deleted" x="1608" y="0"/>
+</item>
+<item active="true" historyLabel="SafeWalkClient Manifest" index="12"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="right"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -499,16 +512,33 @@
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SubmitCallbackListener.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java">
+<persistable path="/SafeWalkClient/src/edu/purdue/jwlehman/SubmitCallbackListener.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="StartOverCallbackListener.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java">
+<persistable path="/SafeWalkClient/src/edu/purdue/jwlehman/StartOverCallbackListener.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BuildConfig.java" tooltip="SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java">
+<persistable path="/SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="resources.ap_" tooltip="SafeWalkClient/bin/resources.ap_">
+<persistable path="/SafeWalkClient/bin/resources.ap_"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="SafeWalkClient.apk" tooltip="SafeWalkClient/bin/SafeWalkClient.apk">
+<persistable path="/SafeWalkClient/bin/SafeWalkClient.apk"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="SafeWalkClient/bin/AndroidManifest.xml">
+<persistable path="/SafeWalkClient/bin/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="AndroidManifest.xml" tooltip="SafeWalkClient/AndroidManifest.xml">
+<persistable path="/SafeWalkClient/AndroidManifest.xml"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="classes.dex" tooltip="SafeWalkClient/bin/classes.dex">
 <persistable path="/SafeWalkClient/bin/classes.dex"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="SafeWalkClient/AndroidManifest.xml">
-<persistable path="/SafeWalkClient/AndroidManifest.xml"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java">
 <persistable path="/SafeWalkClient/src/edu/purdue/jwlehman/MainActivity.java"/>
@@ -522,12 +552,6 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" name="project.properties" tooltip="SafeWalkClient/project.properties">
 <persistable path="/SafeWalkClient/project.properties"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="SafeWalkClient/bin/AndroidManifest.xml">
-<persistable path="/SafeWalkClient/bin/AndroidManifest.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BuildConfig.java" tooltip="SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java">
-<persistable path="/SafeWalkClient/gen/edu/purdue/jwlehman/BuildConfig.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="R.java" tooltip="SafeWalkClient/gen/edu/purdue/jwlehman/R.java">
 <persistable path="/SafeWalkClient/gen/edu/purdue/jwlehman/R.java"/>
 </file>
@@ -536,9 +560,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ServerFragment.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/ServerFragment.java">
 <persistable path="/SafeWalkClient/src/edu/purdue/jwlehman/ServerFragment.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ClientFragment.java" tooltip="SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java">
-<persistable path="/SafeWalkClient/src/edu/purdue/jwlehman/ClientFragment.java"/>
 </file>
 </mruList>
 </workbench>
