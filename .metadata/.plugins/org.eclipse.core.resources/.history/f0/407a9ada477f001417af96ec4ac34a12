@@ -1,0 +1,186 @@
+package edu.purdue.jwlehman;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.*;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+
+/**
+ * This fragment is the "page" where the user inputs information about the
+ * request, he/she wishes to send.
+ *
+ * @author jwlehman
+ */
+public class ClientFragment extends Fragment implements OnClickListener{
+	//EditText where user enters name
+	private EditText name;
+
+	//Radio button where user selects requester
+	private RadioButton requester;
+
+	//RadioButton where user selects volunteer
+	private RadioButton volunteer;
+
+	//RadioButton where user selects no preference of volunteer or requester
+	private RadioButton nopref;
+
+	//Spinner where user selects from location
+	private Spinner from;
+
+	//Spinner where user selects to location
+	private Spinner to;
+
+	private RadioGroup preferences;
+
+	private String type;
+
+	private static int fPosition;
+
+	private static int tPosition;
+	/**
+	 * Activity which have to receive callbacks.
+	 */
+	private SubmitCallbackListener activity;
+
+	/**
+	 * Creates a ProfileFragment
+	 * 
+	 * @param activity
+	 *            activity to notify once the user click on the submit Button.
+	 * 
+	 *            ** DO NOT CREATE A CONSTRUCTOR FOR MatchFragment **
+	 * 
+	 * @return the fragment initialized.
+	 */
+	// ** DO NOT CREATE A CONSTRUCTOR FOR ProfileFragment **
+	public static ClientFragment newInstance(SubmitCallbackListener activity) {
+		ClientFragment f = new ClientFragment();
+
+		f.activity = activity;
+		return f;
+	}
+
+	/**
+	 * Called when the fragment will be displayed.
+	 */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		if (container == null) {
+			return null;
+		}
+
+		View view = inflater.inflate(R.layout.client_fragment_layout,
+				container, false);
+
+		/**
+		 * Register this fragment to be the OnClickListener for the submit
+		 * Button.
+		 */
+		view.findViewById(R.id.bu_submit).setOnClickListener(this);
+
+		// TODO: import your Views from the layout here. See example in
+		// ServerFragment.
+
+		this.name = (EditText)	view.findViewById(R.id.cet_name);
+		this.requester = (RadioButton) view.findViewById(R.id.crb_requester);
+		this.volunteer = (RadioButton) view.findViewById(R.id.crb_volunteer);
+		this.nopref = (RadioButton) view.findViewById(R.id.crb_nopref);
+		this.from = (Spinner) view.findViewById(R.id.csp_from);
+		this.to = (Spinner) view.findViewById(R.id.csp_to);
+		this.preferences = (RadioGroup) view.findViewById(R.id.crg_preference);
+		preferences.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+
+
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				int selectedId = preferences.getCheckedRadioButtonId();
+				if(selectedId == nopref.getId()) 
+					type = "0";
+				else if(selectedId == requester.getId())
+					type = "1";
+				else 
+					type = "2";
+
+			}
+		});
+		return view;
+	}
+	public void addListenerOnItemSelect() {
+		from.setOnItemSelectedListener(new OnItemSelectedListener(){
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				Toast.makeText(parent.getContext(),parent.getItemAtPosition(pos).toString(),Toast.LENGTH_LONG).show();
+				ClientFragment.fPosition = pos;
+			}
+
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
+
+		to.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+				Toast.makeText(parent.getContext(),parent.getItemAtPosition(pos).toString(),Toast.LENGTH_LONG).show();
+				ClientFragment.tPosition = pos;
+			}
+
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
+	}
+
+
+
+	/**
+	 * Callback function for the OnClickListener interface.
+	 */
+	@Override
+	public void onClick(View v) {
+		this.activity.onSubmit();
+	}
+
+	public String getFrom() {
+
+		String str = String.valueOf(this.from.getSelectedItem());	
+		if(str.equals("CL50-Class of 1950 Lecture Hall"))
+			return "CL50";
+		if(str.equals("EE-Electrical Engineering Building"))
+			return "EE";
+
+	}
+
+	public String getTo() {
+
+		if(tPosition == 0)
+			return "CL50";
+		else if(tPosition == 1)
+			return "EE";
+		else if(tPosition == 2)
+			return "LWSN";
+		else if(tPosition == 3)
+			return "PMU";
+		else if(tPosition ==4)
+			return "PUSH";
+		else 
+			return "*";
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public String getName() {
+		return this.name.getText().toString();
+	}
+
+	public String getCommand() {
+		String str = String.format("%s,%s,%s,%s",getName(),getFrom(),getTo(),getType());
+		return str;
+
+	}
+}

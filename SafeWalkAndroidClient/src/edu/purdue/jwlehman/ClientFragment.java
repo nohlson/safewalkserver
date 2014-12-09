@@ -19,28 +19,28 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class ClientFragment extends Fragment implements OnClickListener{
 	//EditText where user enters name
 	private EditText name;
-	
+
 	//Radio button where user selects requester
 	private RadioButton requester;
-	
+
 	//RadioButton where user selects volunteer
 	private RadioButton volunteer;
-	
+
 	//RadioButton where user selects no preference of volunteer or requester
 	private RadioButton nopref;
-	
+
 	//Spinner where user selects from location
 	private Spinner from;
-	
+
 	//Spinner where user selects to location
 	private Spinner to;
-	
+
 	private RadioGroup preferences;
-	
+
 	private String type;
-	
+
 	private static int fPosition;
-	
+
 	private static int tPosition;
 	/**
 	 * Activity which have to receive callbacks.
@@ -86,7 +86,7 @@ public class ClientFragment extends Fragment implements OnClickListener{
 
 		// TODO: import your Views from the layout here. See example in
 		// ServerFragment.
-		
+
 		this.name = (EditText)	view.findViewById(R.id.cet_name);
 		this.requester = (RadioButton) view.findViewById(R.id.crb_requester);
 		this.volunteer = (RadioButton) view.findViewById(R.id.crb_volunteer);
@@ -94,7 +94,11 @@ public class ClientFragment extends Fragment implements OnClickListener{
 		this.from = (Spinner) view.findViewById(R.id.csp_from);
 		this.to = (Spinner) view.findViewById(R.id.csp_to);
 		this.preferences = (RadioGroup) view.findViewById(R.id.crg_preference);
-		return view;
+		
+
+
+		
+				return view;
 	}
 	public void addListenerOnItemSelect() {
 		from.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -104,10 +108,10 @@ public class ClientFragment extends Fragment implements OnClickListener{
 			}
 
 			public void onNothingSelected(AdapterView<?> parent) {
-				
+
 			}
 		});
-		
+
 		to.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 				Toast.makeText(parent.getContext(),parent.getItemAtPosition(pos).toString(),Toast.LENGTH_LONG).show();
@@ -115,79 +119,78 @@ public class ClientFragment extends Fragment implements OnClickListener{
 			}
 
 			public void onNothingSelected(AdapterView<?> parent) {
-				
+
 			}
 		});
 	}
-	
-	public void addListenerOnRadioChange() {
-		preferences.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-			
-			
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				int selectedId = preferences.getCheckedRadioButtonId();
-				if(selectedId == nopref.getId()) 
-					type = "0";
-				else if(selectedId == requester.getId())
-					type = "1";
-				else if(selectedId == volunteer.getId())
-					type = "2";
-					
-			}
-		});
-		
-	}
+
+
+
 	/**
 	 * Callback function for the OnClickListener interface.
 	 */
 	@Override
 	public void onClick(View v) {
+
 		this.activity.onSubmit();
 	}
-	
+
 	public String getFrom() {
-		
+
 		String str = String.valueOf(this.from.getSelectedItem());	
-		if(fPosition == 0)
+		if(str.equals("CL50-Class of 1950 Lecture Hall"))
 			return "CL50";
-		else if(fPosition == 1)
+		else if(str.equals("EE-Electrical Engineering Building"))
 			return "EE";
-		else if(fPosition == 2)
+		else if(str.equals("LWSN-Lawson Computer Science Building"))
 			return "LWSN";
-		else if(fPosition == 3)
+		else if(str.equals("PMU-Purdue Memorial Union"))
 			return "PMU";
-		else 
+		else if(str.equals("PUSH-Purdue University Student Health Center"))
 			return "PUSH";
-					
+		else
+			return "-1";
 	}
-	
+
 	public String getTo() {
-			
-		if(tPosition == 0)
+
+		String str = String.valueOf(this.to.getSelectedItem());	
+		if(str.equals("CL50-Class of 1950 Lecture Hall"))
 			return "CL50";
-		else if(tPosition == 1)
+		else if(str.equals("EE-Electrical Engineering Building"))
 			return "EE";
-		else if(tPosition == 2)
+		else if(str.equals("LWSN-Lawson Computer Science Building"))
 			return "LWSN";
-		else if(tPosition == 3)
+		else if(str.equals("PMU-Purdue Memorial Union"))
 			return "PMU";
-		else if(tPosition ==4)
+		else if(str.equals("PUSH-Purdue University Student Health Center"))
 			return "PUSH";
-		else 
+		else if(str.equals("*-Any location"))
 			return "*";
+		else 
+			return "-1";
 	}
-	
+
 	public String getType() {
-		return this.type;
+		int selectedId = preferences.getCheckedRadioButtonId();
+		if(selectedId == nopref.getId())
+			return "0";
+		else if(selectedId == requester.getId())
+			return"1";
+		else if(selectedId == volunteer.getId())
+			return"2";
+		else		
+			return "-1";
+
 	}
-	
+
 	public String getName() {
 		return this.name.getText().toString();
 	}
-	
+
 	public String getCommand() {
 		String str = String.format("%s,%s,%s,%s",getName(),getFrom(),getTo(),getType());
 		return str;
-		
+
 	}
 }

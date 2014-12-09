@@ -22,7 +22,7 @@ import android.widget.*;
 public class MatchFragment extends Fragment implements OnClickListener {
 
 	private static final String DEBUG_TAG = "DEBUG";
-
+	private int count=0;
 	/**
 	 * Activity which have to receive callbacks.
 	 */
@@ -55,6 +55,16 @@ public class MatchFragment extends Fragment implements OnClickListener {
 	private TextView from;
 
 	private TextView to;
+	
+
+	private String name;
+	
+	private String locFrom;
+	
+	private String locTo;
+	
+	private TextView successMessage;
+	
 
 
 	// TODO: your own class fields here
@@ -118,6 +128,8 @@ public class MatchFragment extends Fragment implements OnClickListener {
 		this.partner = (TextView) view.findViewById(R.id.mtv_partner);
 		this.from = (TextView) view.findViewById(R.id.mtv_from);
 		this.to = (TextView) view.findViewById(R.id.mtv_to);
+		this.successMessage = (TextView) view.findViewById(R.id.mtv_successMessage);
+		this.successMessage.setVisibility(View.INVISIBLE);
 		this.partner.setVisibility(View.INVISIBLE);
 		this.from.setVisibility(View.INVISIBLE);
 		this.to.setVisibility(View.INVISIBLE);
@@ -178,6 +190,7 @@ public class MatchFragment extends Fragment implements OnClickListener {
 
 				InetAddress serverAddr = InetAddress.getByName(host);
 				socket = new Socket(serverAddr, port);
+				publishProgress();
 			} catch (UnknownHostException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -188,8 +201,21 @@ public class MatchFragment extends Fragment implements OnClickListener {
 				PrintWriter out = new PrintWriter(new BufferedWriter(
 						new OutputStreamWriter(socket.getOutputStream())),
 						true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out.println(command);
-			} catch (UnknownHostException e) {
+				publishProgress();
+				String result = in.readLine();
+				
+				if (result.charAt(0) == 'R') {
+					String[] justResponse = result.substring(9).split(",");
+					name = justResponse[0];
+					locFrom = justResponse[1];
+					locTo = justResponse[2];
+					
+					out.println(":ACK");
+					publishProgress();
+				}
+			}catch (UnknownHostException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -200,8 +226,9 @@ public class MatchFragment extends Fragment implements OnClickListener {
 
 			return "";
 		}
-		public void close() {
+		public void close()  {
 			// TODO: Clean up the client
+			
 		}
 
 		/**
@@ -224,6 +251,13 @@ public class MatchFragment extends Fragment implements OnClickListener {
 		 */
 		@Override
 		protected void onPostExecute(String result) {
+			partner.setText(name);
+			partner.setVisibility(View.VISIBLE);
+			from.setText(locFrom);
+			from.setVisibility(View.VISIBLE);
+			to.setText(locTo);
+			to.setVisibility(View.VISIBLE);
+			successMessage.setVisibility(View.VISIBLE);
 		}
 
 		/**
@@ -232,6 +266,17 @@ public class MatchFragment extends Fragment implements OnClickListener {
 		 */
 		@Override
 		protected void onProgressUpdate(String... result) {
+			if(count == 0){
+				serverConnectMessage.setText("You have connected to the server");
+				count++;}
+			else if(count ==1){
+				requestSentMessage.setText("Your request was sent to the server");
+				count++;
+			}
+			else if(count ==2){
+				matchFoundMessage.setText("A match has been found for you");
+			}
+				
 		}
 	}
 

@@ -1,0 +1,280 @@
+package edu.purdue.jwlehman;
+
+import java.io.*;
+import java.net.*;
+
+import android.app.Fragment;
+import android.util.Log;
+import android.view.View.OnClickListener;
+import android.os.Bundle;
+import android.os.AsyncTask;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.*;
+
+/**
+ * This fragment is the "page" where the application display the log from the
+ * server and wait for a match.
+ *
+ * @author YL
+ */
+public class MatchFragment extends Fragment implements OnClickListener {
+
+	private static final String DEBUG_TAG = "DEBUG";
+	private int count=0;
+	/**
+	 * Activity which have to receive callbacks.
+	 */
+	private StartOverCallbackListener activity;
+
+	/**
+	 * AsyncTask sending the request to the server.
+	 */
+	private Client client;
+
+	/**
+	 * Coordinate of the server.
+	 */
+	private String host;
+	private int port;
+	private Socket socket;
+	/**
+	 * Command the user should send.
+	 */
+	private String command;
+
+	private TextView serverConnectMessage;
+
+	private TextView requestSentMessage;
+
+	private TextView matchFoundMessage;
+
+	private TextView partner;
+
+	private TextView from;
+
+	private TextView to;
+	
+
+	private String name;
+	
+	private String locFrom;
+	
+	private String locTo;
+	
+	private TextView successMessage;
+	
+
+
+	// TODO: your own class fields here
+
+	// Class methods
+	/**
+	 * Creates a MatchFragment
+	 * 
+	 * @param activity
+	 *            activity to notify once the user click on the start over
+	 *            Button.
+	 * @param host
+	 *            address or IP address of the server.
+	 * @param port
+	 *            port number.
+	 * 
+	 * @param command
+	 *            command you have to send to the server.
+	 * 
+	 * @return the fragment initialized.
+	 */
+	// TODO: you can add more parameters, follow the way we did it.
+	// ** DO NOT CREATE A CONSTRUCTOR FOR MatchFragment **
+	public static MatchFragment newInstance(StartOverCallbackListener activity,
+			String host, int port, String command) {
+		MatchFragment f = new MatchFragment();
+
+		f.activity = activity;
+		f.host = host;
+		f.port = port;
+		f.command = command;
+
+		return f;
+	}
+
+	/**
+	 * Called when the fragment will be displayed.
+	 */
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		if (container == null) {
+			return null;
+		}
+
+		View view = inflater.inflate(R.layout.match_fragment_layout, container,
+				false);
+
+		/**
+		 * Register this fragment to be the OnClickListener for the startover
+		 * button.
+		 */
+		view.findViewById(R.id.bu_start_over).setOnClickListener(this);
+
+		// TODO: import your Views from the layout here. See example in
+		// ServerFragment.
+
+		this.serverConnectMessage = (TextView) view.findViewById(R.id.mtv_servConnec);
+		this.requestSentMessage = (TextView) view.findViewById(R.id.mtv_requestSent);
+		this.matchFoundMessage = (TextView) view.findViewById(R.id.mtv_pairFound);
+		this.partner = (TextView) view.findViewById(R.id.mtv_partner);
+		this.from = (TextView) view.findViewById(R.id.mtv_from);
+		this.to = (TextView) view.findViewById(R.id.mtv_to);
+		this.successMessage = (TextView) view.findViewById(R.id.mtv_successMessage);
+		this.successMessage.setVisibility(View.INVISIBLE);
+		this.partner.setVisibility(View.INVISIBLE);
+		this.from.setVisibility(View.INVISIBLE);
+		this.to.setVisibility(View.INVISIBLE);
+
+		/**
+		 * Launch the AsyncTask
+		 */
+		this.client = new Client();
+		this.client.execute("");
+
+		return view;
+	}
+
+	/**
+	 * Callback function for the OnClickListener interface.
+	 */
+	@Override
+	public void onClick(View v) {
+		/**
+		 * Close the AsyncTask if still running.
+		 */
+		this.client.close();
+
+		/**
+		 * Notify the Activity.
+		 */
+		this.activity.onStartOver();
+	}
+
+	class Client extends AsyncTask<String, String, String> implements Closeable {
+
+		/**
+		 * NOTE: you can access MatchFragment field from this class:
+		 * 
+		 * Example: The statement in doInBackground will print the message in
+		 * the Eclipse LogCat view.
+		 */
+
+		/**
+		 * The system calls this to perform work in a worker thread and delivers
+		 * it the parameters given to AsyncTask.execute()
+		 */
+		protected String doInBackground(String... params) {
+
+			/**
+			 * TODO: Your Client code here.
+			 */
+			Log.d(DEBUG_TAG, String
+					.format("The Server at the address %s uses the port %d",
+							host, port));
+
+			Log.d(DEBUG_TAG, String.format(
+					"The Client will send the command: %s", command));
+
+			try {
+
+
+
+				InetAddress serverAddr = InetAddress.getByName(host);
+				socket = new Socket(serverAddr, port);
+			} catch (UnknownHostException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
+			try {
+				PrintWriter out = new PrintWriter(new BufferedWriter(
+						new OutputStreamWriter(socket.getOutputStream())),
+						true);
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				out.println(command);
+				String result = in.readLine();
+				
+				if (result.charAt(0) == 'R') {
+					String[] justResponse = result.substring(9).split(",");
+					name = justResponse[0];
+					locFrom = justResponse[1];
+					locTo = justResponse[2];
+					
+					out.println(":ACK");
+				}
+			}catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+
+			return "";
+		}
+		public void close()  {
+			// TODO: Clean up the client
+			
+		}
+
+		/**
+		 * The system calls this to perform work in the UI thread and delivers
+		 * the result from doInBackground()
+		 */
+
+		// TODO: use the following method to update the UI.
+		// ** DO NOT TRY TO CALL UI METHODS FROM doInBackground!!!!!!!!!! **
+
+		/**
+		 * Method executed just before the task.
+		 */
+		@Override
+		protected void onPreExecute() {
+		}
+
+		/**
+		 * Method executed once the task is completed.
+		 */
+		@Override
+		protected void onPostExecute(String result) {
+			partner.setText(name);
+			partner.setVisibility(View.VISIBLE);
+			from.setText(locFrom);
+			from.setVisibility(View.VISIBLE);
+			to.setText(locTo);
+			to.setVisibility(View.VISIBLE);
+			successMessage.setVisibility(View.VISIBLE);
+		}
+
+		/**
+		 * Method executed when progressUpdate is called in the doInBackground
+		 * function.
+		 */
+		@Override
+		protected void onProgressUpdate(String... result) {
+			if(count == 0){
+				serverConnectMessage.setText("You have connected to the server");
+				count++;}
+			else if(count ==1){
+				requestSentMessage.setText("Your request was sent to the server")
+				count++;
+			}
+			else if(count ==2){
+				matchFoundMessage.setText("A match has been found for you");
+			}
+				
+		}
+	}
+
+}
