@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.purdue.YL.MainActivity" >
+    tools:context="edu.purdue.jwlehman.MainActivity" >
 
     <!-- TODO your layout here -->
 
@@ -25,36 +25,103 @@
         android:padding="@dimen/padding"
         android:text="@string/submit" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/set_name"
-        android:layout_alignParentLeft="true"
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
     <EditText
-        android:id="@+id/set_name"
+        android:id="@+id/cet_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="50dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_alignBottom="@+id/TextView02"
+        android:layout_marginLeft="22dp"
+        android:layout_toRightOf="@+id/TextView02"
         android:ems="10" >
 
         <requestFocus />
     </EditText>
 
     <TextView
+        android:id="@+id/mtv_servConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/csp_from"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="128dp"
+        android:text="From"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/csp_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_below="@+id/mtv_servConnect"
+        android:layout_marginTop="31dp"
+        android:entries="@array/from_array" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/bu_submit"
-        android:layout_below="@+id/set_name"
-        android:layout_marginTop="96dp"
-        android:text="Medium Text"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_below="@+id/TextView02"
+        android:layout_marginTop="126dp"
+        android:text="Preferences"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/csp_from"
+        android:layout_below="@+id/csp_from"
+        android:layout_marginTop="137dp"
+        android:text="To"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RadioGroup
+        android:id="@+id/crg_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mtv_servConnect"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="21dp" >
+
+        <RadioButton
+            android:id="@+id/crb_requester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="I am a requester. Match me with volunteers only." />
+
+        <RadioButton
+            android:id="@+id/crb_volunteer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am a volunteer. Don&apos;t match me with other volunteers." />
+
+        <RadioButton
+            android:id="@+id/crb_nopref"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I have no preference in being a volunteer or a requester." />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/csp_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/TextView01"
+        android:layout_marginTop="48dp"
+        android:entries="@array/to_array" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="79dp"
+        android:text="Name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
