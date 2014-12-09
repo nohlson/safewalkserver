@@ -43,20 +43,20 @@ public class MatchFragment extends Fragment implements OnClickListener {
 	 * Command the user should send.
 	 */
 	private String command;
-
+	
 	private TextView serverConnectMessage;
-
+	
 	private TextView requestSentMessage;
-
+	
 	private TextView matchFoundMessage;
-
+	
 	private TextView partner;
-
+	
 	private TextView from;
-
+	
 	private TextView to;
-
-
+	
+	
 	// TODO: your own class fields here
 
 	// Class methods
@@ -111,7 +111,7 @@ public class MatchFragment extends Fragment implements OnClickListener {
 
 		// TODO: import your Views from the layout here. See example in
 		// ServerFragment.
-
+		
 		this.serverConnectMessage = (TextView) view.findViewById(R.id.mtv_servConnec);
 		this.requestSentMessage = (TextView) view.findViewById(R.id.mtv_requestSent);
 		this.matchFoundMessage = (TextView) view.findViewById(R.id.mtv_pairFound);
@@ -121,7 +121,7 @@ public class MatchFragment extends Fragment implements OnClickListener {
 		this.partner.setVisibility(View.INVISIBLE);
 		this.from.setVisibility(View.INVISIBLE);
 		this.to.setVisibility(View.INVISIBLE);
-
+		
 		/**
 		 * Launch the AsyncTask
 		 */
@@ -171,37 +171,36 @@ public class MatchFragment extends Fragment implements OnClickListener {
 
 			Log.d(DEBUG_TAG, String.format(
 					"The Client will send the command: %s", command));
-
-			try {
-
-
-
-				InetAddress serverAddr = InetAddress.getByName(host);
-				socket = new Socket(serverAddr, port);
-			} catch (UnknownHostException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-
-			try {
-				PrintWriter out = new PrintWriter(new BufferedWriter(
-						new OutputStreamWriter(socket.getOutputStream())),
-						true);
-				out.println(command);
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			
+			 try {
+	                InetAddress serverAddr = InetAddress.getByName(/*SERVER_IP*/);
+	                socket = new Socket(/*serverAddr*/, /*SERVERPORT*/);
+	            } catch (UnknownHostException e1) {
+	                e1.printStackTrace();
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	            
+	            try {
+	            	EditText et = (EditText) findViewById(/*the textbox*/);
+	            	String str = /*et.getText().toString()*/;
+	            	PrintWriter out = new PrintWriter(new BufferedWriter(
+	            			new OutputStreamWriter(socket.getOutputStream())),
+	            			true);
+	            	out.println(str);
+	            } catch (UnknownHostException e) {
+	            	e.printStackTrace();
+	            } catch (IOException e) {
+	            	e.printStackTrace();
+	            } catch (Exception e) {
+	            	e.printStackTrace();
+	            }
 
 
 			return "";
 		}
 		public void close() {
-			// TODO: Clean up the client
+                    // TODO: Clean up the client
 		}
 
 		/**

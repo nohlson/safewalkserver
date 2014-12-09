@@ -156,13 +156,14 @@ public class ClientFragment extends Fragment implements OnClickListener{
 			return "LWSN";
 		else if(fPosition == 3)
 			return "PMU";
-		else 
+		else if(fPosition ==4)
 			return "PUSH";
 					
 	}
 	
 	public String getTo() {
-			
+		return String.valueOf(this.to.getSelectedItem());
+		String str = String.valueOf(this.from.getSelectedItem());	
 		if(tPosition == 0)
 			return "CL50";
 		else if(tPosition == 1)
@@ -173,12 +174,12 @@ public class ClientFragment extends Fragment implements OnClickListener{
 			return "PMU";
 		else if(tPosition ==4)
 			return "PUSH";
-		else 
+		else if(tPosition ==5)
 			return "*";
 	}
 	
 	public String getType() {
-		return this.type;
+		return this.type.toString();
 	}
 	
 	public String getName() {

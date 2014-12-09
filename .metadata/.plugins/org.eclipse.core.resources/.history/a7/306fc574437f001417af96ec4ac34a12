@@ -116,9 +116,9 @@ StartOverCallbackListener {
 	@Override
 	public void onSubmit() {
 		// TODO: Get client info via client fragment
-	
+		ClientFragment cf = new ClientFragment();
 		String name = this.clientFragment.getName();
-		String type = this.clientFragment.getType();
+		int type = this.clientFragment.getType();
 		String from = this.clientFragment.getFrom();
 		String to = this.clientFragment.getTo();
 		// Server info
@@ -148,7 +148,8 @@ StartOverCallbackListener {
 		}
 
 		// TODO: Need to get command from client fragment
-		String command = this.clientFragment.getCommand();
+		String command = this.getResources()
+				.getString(R.string.default_command);
 
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 

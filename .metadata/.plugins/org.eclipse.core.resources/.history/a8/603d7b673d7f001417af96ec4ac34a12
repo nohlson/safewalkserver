@@ -37,11 +37,7 @@ public class ClientFragment extends Fragment implements OnClickListener{
 	
 	private RadioGroup preferences;
 	
-	private String type;
-	
-	private static int fPosition;
-	
-	private static int tPosition;
+	private int type = 0;
 	/**
 	 * Activity which have to receive callbacks.
 	 */
@@ -97,27 +93,8 @@ public class ClientFragment extends Fragment implements OnClickListener{
 		return view;
 	}
 	public void addListenerOnItemSelect() {
-		from.setOnItemSelectedListener(new OnItemSelectedListener(){
-			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-				Toast.makeText(parent.getContext(),parent.getItemAtPosition(pos).toString(),Toast.LENGTH_LONG).show();
-				ClientFragment.fPosition = pos;
-			}
-
-			public void onNothingSelected(AdapterView<?> parent) {
-				
-			}
-		});
-		
-		to.setOnItemSelectedListener(new OnItemSelectedListener() {
-			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-				Toast.makeText(parent.getContext(),parent.getItemAtPosition(pos).toString(),Toast.LENGTH_LONG).show();
-				ClientFragment.tPosition = pos;
-			}
-
-			public void onNothingSelected(AdapterView<?> parent) {
-				
-			}
-		});
+		from.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+		to.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 	}
 	
 	public void addListenerOnRadioChange() {
@@ -127,11 +104,11 @@ public class ClientFragment extends Fragment implements OnClickListener{
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				int selectedId = preferences.getCheckedRadioButtonId();
 				if(selectedId == nopref.getId()) 
-					type = "0";
+					type = 0;
 				else if(selectedId == requester.getId())
-					type = "1";
+					type = 1;
 				else if(selectedId == volunteer.getId())
-					type = "2";
+					type = 2;
 					
 			}
 		});
@@ -146,38 +123,14 @@ public class ClientFragment extends Fragment implements OnClickListener{
 	}
 	
 	public String getFrom() {
-		
-		String str = String.valueOf(this.from.getSelectedItem());	
-		if(fPosition == 0)
-			return "CL50";
-		else if(fPosition == 1)
-			return "EE";
-		else if(fPosition == 2)
-			return "LWSN";
-		else if(fPosition == 3)
-			return "PMU";
-		else 
-			return "PUSH";
-					
+		return String.valueOf(this.from.getSelectedItem());	
 	}
 	
 	public String getTo() {
-			
-		if(tPosition == 0)
-			return "CL50";
-		else if(tPosition == 1)
-			return "EE";
-		else if(tPosition == 2)
-			return "LWSN";
-		else if(tPosition == 3)
-			return "PMU";
-		else if(tPosition ==4)
-			return "PUSH";
-		else 
-			return "*";
+		return String.valueOf(this.to.getSelectedItem());
 	}
 	
-	public String getType() {
+	public int getType() {
 		return this.type;
 	}
 	
@@ -185,9 +138,4 @@ public class ClientFragment extends Fragment implements OnClickListener{
 		return this.name.getText().toString();
 	}
 	
-	public String getCommand() {
-		String str = String.format("%s,%s,%s,%s",getName(),getFrom(),getTo(),getType());
-		return str;
-		
-	}
 }
